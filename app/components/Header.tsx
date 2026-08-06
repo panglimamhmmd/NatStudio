@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { useLanguage } from "@/lib/language";
 import { waLink } from "@/lib/contact";
 import type { Lang } from "@/lib/dictionary";
@@ -15,6 +15,17 @@ export default function Header() {
   const { lang, setLang, t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const navRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const [underline, setUnderline] = useState({ x: 0, width: 0, visible: false });
+
+  useLayoutEffect(() => {
+    const el = activeId ? navRefs.current[activeId] : null;
+    if (!el) {
+      setUnderline((prev) => ({ ...prev, visible: false }));
+      return;
+    }
+    setUnderline({ x: el.offsetLeft, width: el.offsetWidth, visible: true });
+  }, [activeId, t.nav.items]);
 
   useEffect(() => {
     const ids = t.nav.items.map((item) => item.href.replace("#", ""));
@@ -61,22 +72,33 @@ export default function Header() {
           Natstudio
         </a>
 
-        <nav aria-label="Main" className="hidden items-center gap-7 md:flex">
+        <nav aria-label="Main" className="relative hidden items-center gap-7 md:flex">
           {t.nav.items.map((item) => {
             const id = item.href.replace("#", "");
             const active = activeId === id;
             return (
               <a
                 key={item.href}
+                ref={(el) => {
+                  navRefs.current[id] = el;
+                }}
                 href={item.href}
-                className={`nav-frame py-1 text-sm font-medium transition-colors ${
-                  active ? "is-active text-accent" : "text-muted hover:text-accent"
+                className={`py-1 text-sm font-medium transition-colors ${
+                  active ? "text-accent" : "text-muted hover:text-accent"
                 }`}
               >
                 {item.label}
               </a>
             );
           })}
+          <span
+            aria-hidden="true"
+            className={`nav-underline ${underline.visible ? "is-visible" : ""}`}
+            style={{
+              transform: `translateX(${underline.x}px)`,
+              width: `${underline.width}px`,
+            }}
+          />
         </nav>
 
         <div className="flex items-center gap-3 sm:gap-4">

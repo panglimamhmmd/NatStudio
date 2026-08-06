@@ -34,10 +34,10 @@ export default function Footer() {
               {t.nav.cta}
             </a>
             <a
-              href="mailto:hello@natstudio.example"
+              href="mailto:hello@natstudio.id"
               className="mt-3 block text-sm text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
             >
-              hello@natstudio.example
+              hello@natstudio.id
             </a>
           </div>
 

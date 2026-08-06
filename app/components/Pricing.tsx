@@ -24,6 +24,9 @@ export default function Pricing() {
         <h2 className="display-type mt-3 max-w-2xl text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
           {t.pricing.titleA} <span className="heading-accent">{t.pricing.titleB}</span>
         </h2>
+        <p className="mt-4 inline-block rounded-md border border-accent/40 bg-accent/10 px-3 py-1.5 font-mono text-xs text-accent-soft">
+          {t.pricing.referral}
+        </p>
       </Reveal>
 
       <div className="mt-10 grid gap-4 md:grid-cols-3">

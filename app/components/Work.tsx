@@ -16,9 +16,6 @@ const frameMeta = [
   { num: "026", ph: "ph-2" },
   { num: "031", ph: "ph-12" },
   { num: "034", ph: "ph-5" },
-  { num: "038", ph: "ph-10" },
-  { num: "042", ph: "ph-9" },
-  { num: "047", ph: "ph-11" },
 ];
 
 export default function Work() {

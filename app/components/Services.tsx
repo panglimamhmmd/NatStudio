@@ -19,7 +19,7 @@ export default function Services() {
         </h2>
       </Reveal>
 
-      <div className="mt-10 grid gap-4 md:grid-cols-3">
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {t.services.cards.map((service, i) => (
           <Reveal key={service.tag} delay={i * 100} className="h-full">
             <article className="h-full rounded-md border border-line bg-card p-6 transition-all duration-300 hover:scale-[1.02] hover:border-accent sm:p-8">

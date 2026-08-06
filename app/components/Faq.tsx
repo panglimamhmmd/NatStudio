@@ -34,10 +34,7 @@ export default function Faq() {
                   +
                 </span>
               </summary>
-              <p
-                className="pb-6 pr-8 text-sm text-muted sm:text-base"
-                style={{ color: "var(--muted)" }}
-              >
+              <p className="pb-6 pr-8 text-sm text-muted sm:text-[1rem]">
                 {faq.a}
               </p>
             </details>
