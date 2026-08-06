@@ -1,0 +1,416 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Natstudio design tokens — black + cyan, dark-only
+   --------------------------------------------------------------------------- */
+:root {
+  --base: #0c1012; /* primary — page background (dark charcoal, not flat black) */
+  --fg: #ffffff; /* main text */
+  --muted: #b4b4b4; /* secondary text */
+  --accent: #0cc0df; /* cyan accent */
+  --accent-deep: #087e91; /* darker cyan — gradients, pressed states */
+  --accent-soft: #7de3f4; /* lighter cyan — tags, small highlights */
+  --card: #1a2124; /* card surface — lighter than base so items stand out */
+  --card-hi: #232b2f; /* extra-lit surface for hover/open states */
+  --line: rgba(255, 255, 255, 0.18); /* hairline borders */
+  --hole: rgba(255, 255, 255, 0.2); /* sprocket holes */
+}
+
+@theme inline {
+  --color-base: var(--base);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-accent-soft: var(--accent-soft);
+  --color-card: var(--card);
+  --color-card-hi: var(--card-hi);
+  --color-line: var(--line);
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--base);
+  color: var(--fg);
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Display type — Plus Jakarta Sans, confident but not harsh */
+.display-type {
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* Heading accent — Bodoni Moda italic against the extrabold Jakarta Sans.
+   High-contrast, fashion-editorial strokes read as confident and a little
+   sharp, closer to the brand's "bold, creative-edgy" voice than a soft
+   serif would. Pushed toward its display cut (high opsz) for headline size. */
+.heading-accent {
+  font-family: var(--font-bodoni), Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-variation-settings: "opsz" 90;
+  letter-spacing: -0.01em;
+  color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Background glows — subtle cyan radials over black
+   --------------------------------------------------------------------------- */
+.glow-hero {
+  background-image:
+    radial-gradient(55% 45% at 15% 5%, rgba(12, 192, 223, 0.16), transparent 70%),
+    radial-gradient(45% 40% at 90% 85%, rgba(8, 126, 145, 0.14), transparent 70%);
+}
+
+.glow-top {
+  background-image: radial-gradient(
+    100% 60% at 50% 0%,
+    rgba(12, 192, 223, 0.08),
+    transparent 75%
+  );
+  background-repeat: no-repeat;
+}
+
+/* ---------------------------------------------------------------------------
+   Sprocket-hole divider — the film-strip section separator
+   --------------------------------------------------------------------------- */
+.sprocket {
+  height: 2.25rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    var(--hole) 3.5px,
+    transparent 4.25px
+  );
+  background-size: 30px 100%;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+@media (max-width: 640px) {
+  .sprocket {
+    height: 1.625rem;
+    background-size: 22px 100%;
+  }
+}
+
+/* Thin sprocket rows used inside film strips */
+.sprocket-thin {
+  height: 1.125rem;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    var(--hole) 2.5px,
+    transparent 3.125px
+  );
+  background-size: 22px 100%;
+  background-repeat: repeat-x;
+  background-position: center;
+}
+
+/* ---------------------------------------------------------------------------
+   Contact-sheet frames — hover "develops" the print
+   --------------------------------------------------------------------------- */
+.frame-media {
+  filter: brightness(0.82) contrast(0.86) saturate(0.8);
+  transition: filter 0.5s ease;
+}
+
+.frame:hover .frame-media,
+.frame:focus-visible .frame-media,
+.frame:focus-within .frame-media {
+  filter: brightness(1) contrast(1) saturate(1);
+}
+
+/* Duotone tint — unifies mixed-source footage (varying color casts) toward
+   the brand's cyan/charcoal palette regardless of the clip's original hue */
+.frame-tint {
+  background: linear-gradient(165deg, rgba(12, 192, 223, 0.55), rgba(7, 23, 27, 0.7));
+  mix-blend-mode: color;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Placeholder "shots" — gradient blocks with a faint print texture.
+   Cool cyan-leaning tones to sit with the accent. No real imagery.
+   --------------------------------------------------------------------------- */
+.ph::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    115deg,
+    rgba(255, 255, 255, 0.05) 0 1px,
+    transparent 1px 5px
+  );
+  pointer-events: none;
+}
+
+.ph-1 { background: linear-gradient(135deg, #1d5a68 0%, #0a2229 100%); }
+.ph-2 { background: linear-gradient(160deg, #2e4a52 0%, #101d21 100%); }
+.ph-3 { background: radial-gradient(120% 120% at 20% 15%, #0cc0df 0%, #0a6d80 55%, #06333c 100%); }
+.ph-4 { background: linear-gradient(200deg, #43555c 0%, #16211f 100%); }
+.ph-5 { background: radial-gradient(140% 100% at 80% 20%, #6aa8b5 0%, #2c5b66 55%, #122b30 100%); }
+.ph-6 { background: linear-gradient(145deg, #24616e 0%, #123842 55%, #081b20 100%); }
+.ph-7 { background: radial-gradient(100% 140% at 30% 80%, #7de3f4 0%, #2a8ba0 50%, #0d3a45 100%); }
+.ph-8 { background: linear-gradient(170deg, #4e5e63 0%, #26343a 60%, #10181c 100%); }
+.ph-9 { background: radial-gradient(130% 110% at 70% 75%, #3f8b8f 0%, #1e4d52 60%, #0b2427 100%); }
+.ph-10 { background: linear-gradient(120deg, #587f8a 0%, #2b4d57 55%, #10262c 100%); }
+.ph-11 { background: radial-gradient(120% 120% at 15% 70%, #35626d 0%, #1a3a43 60%, #0a1c21 100%); }
+.ph-12 { background: linear-gradient(155deg, #0fa5c0 0%, #0b5f70 50%, #05282f 100%); }
+
+/* ---------------------------------------------------------------------------
+   Hero film strip — slow marquee, static under reduced motion
+   --------------------------------------------------------------------------- */
+.filmstrip-track {
+  animation: filmstrip 45s linear infinite;
+}
+
+.filmstrip:hover .filmstrip-track {
+  animation-play-state: paused;
+}
+
+@keyframes filmstrip {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Hero word-by-word pop-in + rise-in for supporting elements
+   --------------------------------------------------------------------------- */
+.word,
+.rise {
+  opacity: 0;
+  transform: translateY(0.5em);
+  animation: pop-in 0.55s cubic-bezier(0.22, 0.68, 0.32, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms);
+}
+
+.word {
+  display: inline-block;
+}
+
+.rise {
+  transform: translateY(1rem);
+}
+
+@keyframes pop-in {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Portfolio lightbox — fade backdrop, pop the panel in
+   --------------------------------------------------------------------------- */
+.lightbox-overlay {
+  animation: lightbox-fade 0.25s ease;
+}
+
+.lightbox-panel {
+  animation: lightbox-pop 0.3s cubic-bezier(0.22, 0.68, 0.32, 1);
+}
+
+@keyframes lightbox-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes lightbox-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+}
+
+.lightbox-overlay.is-closing {
+  animation: lightbox-fade-out 0.2s ease forwards;
+}
+
+.lightbox-panel.is-closing {
+  animation: lightbox-pop-out 0.2s cubic-bezier(0.22, 0.68, 0.32, 1) forwards;
+}
+
+.lightbox-slide-next {
+  animation: lightbox-slide-in-right 0.32s cubic-bezier(0.22, 0.68, 0.32, 1);
+}
+
+.lightbox-slide-prev {
+  animation: lightbox-slide-in-left 0.32s cubic-bezier(0.22, 0.68, 0.32, 1);
+}
+
+@keyframes lightbox-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(8%);
+  }
+}
+
+@keyframes lightbox-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-8%);
+  }
+}
+
+@keyframes lightbox-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes lightbox-pop-out {
+  to {
+    opacity: 0;
+    transform: scale(0.96) translateY(10px);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Scroll-triggered reveal — .is-visible is added by Reveal.tsx on intersect
+   --------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Nav focus brackets — corner marks rack into place like a viewfinder
+   finding its subject. Two opposite corners keep it a quiet accent.
+   --------------------------------------------------------------------------- */
+.nav-frame {
+  position: relative;
+}
+
+.nav-frame::before,
+.nav-frame::after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  opacity: 0;
+  border-color: var(--accent);
+  border-style: solid;
+  border-width: 0;
+  transition:
+    opacity 0.25s ease,
+    transform 0.3s cubic-bezier(0.22, 0.68, 0.32, 1),
+    filter 0.25s ease;
+}
+
+.nav-frame::before {
+  top: -9px;
+  left: -10px;
+  border-top-width: 1.5px;
+  border-left-width: 1.5px;
+  transform: translate(5px, 5px);
+}
+
+.nav-frame::after {
+  bottom: -9px;
+  right: -10px;
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
+  transform: translate(-5px, -5px);
+}
+
+.nav-frame:hover::before,
+.nav-frame:hover::after,
+.nav-frame:focus-visible::before,
+.nav-frame:focus-visible::after {
+  opacity: 1;
+  transform: translate(0, 0);
+  filter: drop-shadow(0 0 4px rgba(12, 192, 223, 0.7));
+}
+
+.nav-frame.is-active::before,
+.nav-frame.is-active::after {
+  opacity: 0.55;
+  transform: translate(0, 0);
+}
+
+/* ---------------------------------------------------------------------------
+   FAQ accordion (details/summary)
+   --------------------------------------------------------------------------- */
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  color: inherit; /* never let a UA default paint the question text/marker */
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary .faq-icon {
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.faq-item[open] summary .faq-icon {
+  transform: rotate(45deg);
+  color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion — kill animation and transitions
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .filmstrip-track {
+    animation: none;
+  }
+
+  .word,
+  .rise {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
