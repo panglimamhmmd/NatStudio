@@ -200,13 +200,9 @@ section[id] {
    transparent so cards look like they drift in and out rather than crop
    --------------------------------------------------------------------------- */
 .marquee-row {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
-  scroll-snap-type: x proximity;
-  scrollbar-width: none;
+  overflow: hidden;
   padding-block: 0.5rem;
+  cursor: pointer;
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   -webkit-mask-image: linear-gradient(
     to right,
@@ -217,10 +213,6 @@ section[id] {
   );
 }
 
-.marquee-row::-webkit-scrollbar {
-  display: none;
-}
-
 .marquee-track {
   animation: marquee 48s linear infinite;
 }
@@ -229,8 +221,6 @@ section[id] {
   animation: marquee 48s linear infinite reverse;
 }
 
-.marquee-row:hover .marquee-track,
-.marquee-row:hover .marquee-track-reverse,
 .marquee-row.is-interacting .marquee-track,
 .marquee-row.is-interacting .marquee-track-reverse {
   animation-play-state: paused;
