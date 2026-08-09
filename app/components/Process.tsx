@@ -7,12 +7,12 @@ import Eyebrow from "./Eyebrow";
 import type { Dict } from "@/lib/dictionary";
 
 const stepMeta = [
-  { num: "001", ph: "ph-2" },
-  { num: "002", ph: "ph-10" },
-  { num: "003", ph: "ph-5" },
-  { num: "004", ph: "ph-6" },
-  { num: "005", ph: "ph-3" },
-  { num: "006", ph: "ph-12" },
+  { num: "001", img: "sign-payment" },
+  { num: "002", img: "consultation" },
+  { num: "003", img: "production" },
+  { num: "004", img: "post-production" },
+  { num: "005", img: "feedback" },
+  { num: "006", img: "finalize" },
 ];
 
 type Step = Dict["process"]["steps"][number];
@@ -21,7 +21,13 @@ function StepCard({ step, i }: { step: Step; i: number }) {
   return (
     <div className="h-full overflow-hidden rounded-md border border-line bg-base transition-all duration-300 hover:scale-[1.02] hover:border-accent">
       <div className="relative h-20">
-        <div className={`frame-media ph ${stepMeta[i].ph} absolute inset-0`} />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`/images/process/${stepMeta[i].img}.jpg`}
+          alt=""
+          className="frame-media absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="frame-tint absolute inset-0" aria-hidden="true" />
         <span className="absolute left-3 top-2.5 font-mono text-[10px] tracking-widest text-white/85">
           FRAME {stepMeta[i].num}
         </span>
