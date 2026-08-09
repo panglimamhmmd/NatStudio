@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono, Fraunces } from "next/font/google";
 import { LanguageProvider } from "@/lib/language";
 import Preloader from "./components/Preloader";
@@ -22,10 +22,64 @@ const fraunces = Fraunces({
   axes: ["opsz", "SOFT", "WONK"],
 });
 
+const SITE_URL = "https://natstudio.vercel.app"; // switch to https://natstudio.id once that domain is live
+const SITE_NAME = "NatStudio";
+const TITLE = "NatStudio: Social Content, Photography & Motion";
+const DESCRIPTION =
+  "Natstudio plans, shoots, and edits content for brands: social, photography, and motion. Every post starts with a shot.";
+
 export const metadata: Metadata = {
-  title: "Natstudio: Social Content, Photography & Motion",
-  description:
-    "Natstudio plans, shoots, and edits content for brands: social, photography, and motion. Every post starts with a shot.",
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
+  applicationName: SITE_NAME,
+  keywords: [
+    "content studio",
+    "social media content",
+    "photography studio",
+    "video production",
+    "motion graphics",
+    "brand content",
+    "NatStudio",
+  ],
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    locale: "id_ID",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+    },
+  },
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0c1012",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
