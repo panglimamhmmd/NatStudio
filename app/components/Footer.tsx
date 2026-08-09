@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "@/lib/language";
 import { waLink } from "@/lib/contact";
 
@@ -18,9 +19,13 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>
-            <p className="display-type text-2xl font-bold uppercase tracking-tight">
-              Natstudio
-            </p>
+            <Image
+              src="/images/natstudio-logo.png"
+              alt="Natstudio"
+              width={1394}
+              height={589}
+              className="h-9 w-auto"
+            />
             <p className="mt-2 font-mono text-[11px] uppercase tracking-[0.2em] text-muted">
               {t.footer.tagline}
             </p>
@@ -34,10 +39,10 @@ export default function Footer() {
               {t.nav.cta}
             </a>
             <a
-              href="mailto:hello@natstudio.id"
+              href="mailto:natstudiocreative@gmail.com"
               className="mt-3 block text-sm text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
             >
-              hello@natstudio.id
+              natstudiocreative@gmail.com
             </a>
           </div>
 

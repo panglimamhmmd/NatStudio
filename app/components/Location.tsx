@@ -4,8 +4,9 @@ import { useLanguage } from "@/lib/language";
 import Reveal from "./Reveal";
 import Eyebrow from "./Eyebrow";
 
-const MAP_QUERY = "BSD City, Tangerang Selatan, Banten";
+const MAP_QUERY = "-6.3557376,106.6952352";
 const MAP_SRC = `https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&output=embed`;
+const MAP_LINK = `https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}`;
 
 export default function Location() {
   const { t } = useLanguage();
@@ -61,12 +62,20 @@ export default function Location() {
             title={`${t.location.area} — ${t.location.mapTag}`}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="absolute inset-0 h-full w-full"
+            className="pointer-events-none absolute inset-0 h-full w-full"
           />
           <div className="frame-tint absolute inset-0" aria-hidden="true" />
-          <span className="pointer-events-none absolute left-2 top-2 rounded-sm bg-base/80 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-accent-soft">
-            {t.location.mapTag}
-          </span>
+          <a
+            href={MAP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group absolute inset-0 z-10 transition-colors hover:bg-base/10"
+            aria-label={`${t.location.area} — ${t.location.mapTag}`}
+          >
+            <span className="pointer-events-none absolute left-2 top-2 rounded-sm bg-base/80 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-accent-soft transition-colors group-hover:text-accent">
+              {t.location.mapTag} ↗
+            </span>
+          </a>
         </Reveal>
       </div>
     </section>

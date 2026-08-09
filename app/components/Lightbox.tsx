@@ -123,38 +123,11 @@ export default function Lightbox({
         ref={closeRef}
         type="button"
         onClick={requestClose}
-        className="absolute right-4 top-4 rounded-md border border-line bg-card p-2 text-fg transition-colors hover:border-accent hover:text-accent"
+        className="absolute right-4 top-4 z-20 rounded-md border border-line bg-card p-2 text-fg transition-colors hover:border-accent hover:text-accent"
         aria-label="Close"
       >
         <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
-        </svg>
-      </button>
-
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          go(-1);
-        }}
-        className="absolute left-2 top-1/2 -translate-y-1/2 rounded-md border border-line bg-card p-2 text-fg transition-colors hover:border-accent hover:text-accent sm:left-6"
-        aria-label="Previous frame"
-      >
-        <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          go(1);
-        }}
-        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md border border-line bg-card p-2 text-fg transition-colors hover:border-accent hover:text-accent sm:right-6"
-        aria-label="Next frame"
-      >
-        <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
 
@@ -181,11 +154,11 @@ export default function Lightbox({
                 loop
                 muted
                 playsInline
+                preload="auto"
               />
             ) : (
               <div className={`frame-media ph ${frame.ph} absolute inset-0`} />
             )}
-            {frame.video && <div className="frame-tint absolute inset-0" aria-hidden="true" />}
             <span className="absolute left-3 top-3 font-mono text-[10px] uppercase tracking-widest text-white/85">
               Frame {frame.num}
             </span>
@@ -193,6 +166,36 @@ export default function Lightbox({
               {index + 1} / {frames.length}
             </span>
           </div>
+
+          {/* Overlaid on the media itself (not floated off the panel edge)
+              so they never collide with the panel border on narrow/portrait
+              layouts where there's no gutter outside the panel to sit in. */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              go(-1);
+            }}
+            className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/45 p-1.5 text-white backdrop-blur-sm transition-colors hover:bg-black/65 hover:text-accent sm:p-2"
+            aria-label="Previous frame"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M15 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              go(1);
+            }}
+            className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/45 p-1.5 text-white backdrop-blur-sm transition-colors hover:bg-black/65 hover:text-accent sm:p-2"
+            aria-label="Next frame"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
         <div className="sprocket-thin" aria-hidden="true" />
         <div className="px-4 py-3">

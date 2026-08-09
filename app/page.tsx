@@ -5,7 +5,6 @@ import Hero from "./components/Hero";
 import Location from "./components/Location";
 import Pricing from "./components/Pricing";
 import Process from "./components/Process";
-import Services from "./components/Services";
 import Sprocket from "./components/Sprocket";
 import Testimonials from "./components/Testimonials";
 import Why from "./components/Why";
@@ -18,8 +17,6 @@ export default function Home() {
       <main>
         <Hero />
         <Work />
-        <Sprocket />
-        <Services />
         <Sprocket />
         <Why />
         <Process />

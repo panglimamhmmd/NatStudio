@@ -59,15 +59,15 @@ section[id] {
   letter-spacing: -0.01em;
 }
 
-/* Heading accent — Bodoni Moda italic against the extrabold Jakarta Sans.
-   High-contrast, fashion-editorial strokes read as confident and a little
-   sharp, closer to the brand's "bold, creative-edgy" voice than a soft
-   serif would. Pushed toward its display cut (high opsz) for headline size. */
+/* Heading accent — Fraunces italic against the extrabold Jakarta Sans.
+   A warmer, slightly quirky editorial serif (vs. Bodoni's sharp high-contrast
+   strokes) that still reads as confident at display size. Pushed toward its
+   display cut (high opsz) with a touch of "wonk" for character. */
 .heading-accent {
-  font-family: var(--font-bodoni), Georgia, serif;
+  font-family: var(--font-fraunces), Georgia, serif;
   font-style: italic;
   font-weight: 500;
-  font-variation-settings: "opsz" 90;
+  font-variation-settings: "opsz" 72, "WONK" 1;
   letter-spacing: -0.01em;
   color: var(--accent);
 }
@@ -182,7 +182,7 @@ section[id] {
    Hero film strip — slow marquee, static under reduced motion
    --------------------------------------------------------------------------- */
 .filmstrip-track {
-  animation: filmstrip 45s linear infinite;
+  animation: filmstrip 23s linear infinite;
 }
 
 .filmstrip:hover .filmstrip-track {
@@ -200,7 +200,12 @@ section[id] {
    transparent so cards look like they drift in and out rather than crop
    --------------------------------------------------------------------------- */
 .marquee-row {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
   padding-block: 0.5rem;
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
   -webkit-mask-image: linear-gradient(
@@ -212,6 +217,10 @@ section[id] {
   );
 }
 
+.marquee-row::-webkit-scrollbar {
+  display: none;
+}
+
 .marquee-track {
   animation: marquee 48s linear infinite;
 }
@@ -221,7 +230,9 @@ section[id] {
 }
 
 .marquee-row:hover .marquee-track,
-.marquee-row:hover .marquee-track-reverse {
+.marquee-row:hover .marquee-track-reverse,
+.marquee-row.is-interacting .marquee-track,
+.marquee-row.is-interacting .marquee-track-reverse {
   animation-play-state: paused;
 }
 
@@ -254,6 +265,58 @@ section[id] {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Held paused (at their opacity:0 first frame) until Preloader clears this
+   class — otherwise these fire the instant Hero mounts, hidden behind the
+   opaque overlay, and finish before it ever fades out. */
+:root.intro-pending .word,
+:root.intro-pending .rise {
+  animation-play-state: paused;
+}
+
+/* ---------------------------------------------------------------------------
+   Preloader — film-edge dressing (sprocket motif) + background glow
+   --------------------------------------------------------------------------- */
+.preloader-glow {
+  background-image:
+    radial-gradient(60% 50% at 50% 42%, rgba(12, 192, 223, 0.14), transparent 70%),
+    radial-gradient(40% 35% at 18% 85%, rgba(8, 126, 145, 0.12), transparent 70%);
+}
+
+.preloader-edge {
+  height: 1.125rem;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(12, 192, 223, 0.4) 2.5px,
+    transparent 3.125px
+  );
+  background-size: 22px 100%;
+  background-repeat: repeat-x;
+  background-position: center;
+  animation: preloader-drift 5s linear infinite;
+}
+
+@keyframes preloader-drift {
+  to {
+    background-position: 220px center;
+  }
+}
+
+.preloader-hint {
+  opacity: 0;
+  animation: preloader-hint-in 0.4s ease 0.7s forwards;
+}
+
+@keyframes preloader-hint-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -347,7 +410,9 @@ section[id] {
 .step-marker.is-active {
   border-color: var(--accent);
   color: var(--accent);
-  background-color: rgba(12, 192, 223, 0.12);
+  /* Opaque (not rgba) so the connecting progress line — drawn behind the
+     marker — can't bleed through and cut across the number. */
+  background-color: #0c252b;
   box-shadow: 0 0 14px -2px rgba(12, 192, 223, 0.6);
 }
 

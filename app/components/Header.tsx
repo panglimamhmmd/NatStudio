@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from "react";
 import { useLanguage } from "@/lib/language";
 import { waLink } from "@/lib/contact";
@@ -67,9 +68,16 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
         <a
           href="#top"
-          className="display-type text-xl font-bold uppercase tracking-tight transition-colors hover:text-accent"
+          className="flex items-center transition-opacity hover:opacity-80"
         >
-          Natstudio
+          <Image
+            src="/images/natstudio-logo.png"
+            alt="Natstudio"
+            width={1394}
+            height={589}
+            priority
+            className="h-8 w-auto"
+          />
         </a>
 
         <nav aria-label="Main" className="relative hidden items-center gap-7 md:flex">

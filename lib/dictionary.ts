@@ -4,7 +4,6 @@ const en = {
   nav: {
     items: [
       { label: "Work", href: "#work" },
-      { label: "Services", href: "#services" },
       { label: "Process", href: "#process" },
       { label: "Pricing", href: "#pricing" },
       { label: "Testimonials", href: "#testimonials" },
@@ -14,80 +13,24 @@ const en = {
     cta: "Start a project",
   },
   hero: {
-    eyebrow: "Natstudio — content studio · est. 2021",
-    titleA: "Content that performs,",
-    titleB: "not just posts",
-    body: "No stock folders, no recycled templates. We're a boutique content studio that shoots and edits everything in-house: social, photography, and motion. If it's in your feed, we made it.",
+    eyebrow: "Natstudio — content studio",
+    titleA: "From visual content to",
+    titleB: "business assets",
+    body: "NatStudio builds quality visual content, end-to-end. You get it done without the hassle, and every piece is ready to work as a business asset that earns—so you can make more money off it.",
     ctaWork: "See the work",
     ctaContact: "Start a project",
     stripNote: "9:16 · video slot",
   },
   work: {
-    eyebrow: "Selected work — contact sheet",
-    titleA: "Straight off the",
-    titleB: "sheet",
+    eyebrow: "Selected work — proof, not promises",
+    titleA: "Real work,",
+    titleB: "not a polished portfolio",
     sub: "A few frames from recent shoots. Client and campaign under each frame. Hover to develop the print.",
     frames: [
       { client: "Gading Serpong", label: "Property video tour" },
       { client: "BSD City Kavling", label: "Cluster overview" },
       { client: "Lake View", label: "Waterfront property" },
       { client: "Rumah 1 Man", label: "Best layout showcase" },
-      { client: "@docartclinic", label: "Social media management" },
-      { client: "@sealeadermarine", label: "Social media management" },
-      { client: "@clothing.else", label: "Social media management" },
-      { client: "@pods_indonesia", label: "Social media management" },
-      { client: "@inpods_indonesia", label: "Social media management" },
-    ],
-  },
-  services: {
-    eyebrow: "Services — what we make",
-    titleA: "Four ways to",
-    titleB: "work with us",
-    cards: [
-      {
-        tag: "PRODUCTION",
-        title: "End-to-End Content Production",
-        copy: "From ideation and scripting to the shoot and the edit, we run the whole thing in-house, for property, commercial, and events alike.",
-        items: [
-          "Ideation & scripting",
-          "Property videography & drone footage",
-          "Commercial ads video & event documentation",
-          "Studio or on-location shoot",
-        ],
-      },
-      {
-        tag: "SOCIAL",
-        title: "Social Media Management",
-        copy: "A full content operation for your feed: planned, shot, edited, and posted on schedule, with a monthly check-in built in.",
-        items: [
-          "Monthly content & strategy plan",
-          "Reels & TikTok content",
-          "Feed design",
-          "Monthly consultation",
-        ],
-      },
-      {
-        tag: "ADS",
-        title: "Advertising Specialist",
-        copy: "Video and photo built for performance, not just looks, cut for Meta Ads and whatever platform you're running spend on.",
-        items: [
-          "Meta Ads video & photo",
-          "Performance-focused edits",
-          "Sized per placement",
-          "Website-ready assets",
-        ],
-      },
-      {
-        tag: "UGC",
-        title: "UGC Campaign",
-        copy: "Creator-style content that reads native in the feed, built to work in both paid ads and organic posts.",
-        items: [
-          "Authentic, creator-style footage",
-          "Vertical format, ad-ready",
-          "Works for ads & organic",
-          "Brief to delivery, handled for you",
-        ],
-      },
     ],
   },
   why: {
@@ -96,31 +39,31 @@ const en = {
     titleB: "first shoot",
     reasons: [
       {
-        tag: "ONE CREW",
-        title: "Same people, start to finish",
-        copy: "The person who plans your shoot is on set, and in the edit. Nothing gets lost in a handoff.",
+        tag: "VIDEO FIRST",
+        title: "Marketing now runs on video",
+        copy: "In the digital era, video carries the pitch — especially for property, where you're selling trust, not just a unit.",
       },
       {
-        tag: "NO STOCK",
-        title: "Shot, not sourced",
-        copy: "Every frame we deliver, we made. Your content won't turn up on someone else's feed.",
+        tag: "NO TEAM",
+        title: "Skip building an in-house team",
+        copy: "Producing quality content consistently takes a team, gear, and time most businesses don't have lying around. We become that production team for you.",
       },
       {
-        tag: "PLATFORM-FIRST",
-        title: "Cut for where it lives",
-        copy: "We frame for vertical on set, not in the crop tool. Each platform gets its own export, not a resize.",
+        tag: "GRAB ATTENTION",
+        title: "Visuals that stop the scroll",
+        copy: "On Instagram, TikTok, and Facebook Ads, visual quality decides who gets noticed — and trusted — by potential customers.",
       },
       {
-        tag: "ON SCHEDULE",
-        title: "Delivery you can plan around",
-        copy: "Fixed shoot dates, fixed delivery dates. Your content calendar fills up before the month starts.",
+        tag: "END-TO-END",
+        title: "From idea to ready-to-post",
+        copy: "Ideation, scripting, the shoot, the edit — we run all of it, until your content is ready to drive branding, leads, and sales.",
       },
     ],
   },
   process: {
     eyebrow: "Process — how a project runs",
-    titleA: "Six frames,",
-    titleB: "start to finish",
+    titleA: "Step by step,",
+    titleB: "NatStudio builds your content",
     steps: [
       {
         meta: "STEP 1",
@@ -208,7 +151,7 @@ const en = {
       },
     ],
     note: "Launching something big, or just need one shoot? We scope one-off projects too. Tell us what you're making and we'll price it straight:",
-    referral: "Referral promo: refer a new client and get 20% off.",
+    referral: "Referral promo: refer a new client and get 10% off.",
   },
   testimonials: {
     eyebrow: "Word of mouth",
@@ -229,18 +172,18 @@ const en = {
   },
   location: {
     eyebrow: "Location — how far we reach",
-    titleA: "National reach,",
-    titleB: "based out of BSD",
+    titleA: "National,",
+    titleB: "based in Tangsel–Tangerang",
     body: "We work remotely across Indonesia. The pin below is just where our crew is based right now, not a location requirement.",
     badge: "Home base",
-    area: "BSD City, South Tangerang",
-    note: "Full address isn't final yet. This pin is a placeholder until the studio address is ready.",
+    area: "Paradise Serpong City, South Tangerang",
+    note: "This is where our crew is based. Shoots happen on-location or here, by appointment.",
     points: [
-      "On-location shoots wherever you are, not just around BSD",
+      "On-location shoots wherever you are, not just around Tangsel–Tangerang",
       "Coordination and reviews run remotely over WhatsApp",
-      "No extra fee for working at a distance",
+      "Transport fee applies for shoots outside Jadetabek, none within it",
     ],
-    mapTag: "Map — placeholder",
+    mapTag: "Our studio",
   },
   faq: {
     eyebrow: "FAQ — before you ask",
@@ -249,7 +192,7 @@ const en = {
     items: [
       {
         q: "How fast is turnaround?",
-        a: "Standard delivery is seven working days from the shoot. Short-form edits usually land sooner. If you're on a launch deadline, tell us at kickoff and we'll build the schedule backwards from it.",
+        a: "Standard turnaround is max H+3 — three days from the shoot. More complex projects or longer-form content can take a bit longer, and we'll flag that upfront so you can plan around it.",
       },
       {
         q: "Who owns the content?",
@@ -286,7 +229,6 @@ const id: typeof en = {
   nav: {
     items: [
       { label: "Karya", href: "#work" },
-      { label: "Layanan", href: "#services" },
       { label: "Proses", href: "#process" },
       { label: "Harga", href: "#pricing" },
       { label: "Testimoni", href: "#testimonials" },
@@ -296,113 +238,57 @@ const id: typeof en = {
     cta: "Konsultasi gratis",
   },
   hero: {
-    eyebrow: "Natstudio — studio konten end-to-end · sejak 2021",
-    titleA: "Konten yang menjual,",
-    titleB: "bukan cuma nampang",
-    body: "Bukan folder stock, bukan template daur ulang. Kami syuting dan edit semuanya sendiri: sosial media, fotografi, sampai motion. Kalau tampil di feed kamu, kami yang bikin.",
+    eyebrow: "Natstudio — studio konten end-to-end",
+    titleA: "Dari visual konten jadi",
+    titleB: "aset bisnis",
+    body: "NatStudio bantuin bikin visual konten berkualitas yang dibuat secara end-to-end. Kalian tinggal terima beres, dan setiap konten udah siap kerja jadi aset bisnis yang menghasilkan. Gak perlu repot—tinggal panen cuannya.",
     ctaWork: "Lihat karya",
     ctaContact: "Konsultasi gratis",
     stripNote: "9:16 · slot video",
   },
   work: {
-    eyebrow: "Karya pilihan — contact sheet",
-    titleA: "Langsung dari",
-    titleB: "contact sheet",
-    sub: "Beberapa frame dari syuting terakhir. Nama klien dan campaign di bawah tiap frame. Arahkan kursor untuk mencuci fotonya.",
+    eyebrow: "Karya pilihan — bukti, bukan janji",
+    titleA: "Bukti kerja kami,",
+    titleB: "bukan portofolio kosong",
+    sub: "Beberapa frame dari shooting terakhir. Nama klien dan campaign di bawah tiap frame. Arahkan kursor untuk mencuci fotonya.",
     frames: [
       { client: "Gading Serpong", label: "Video tur properti" },
       { client: "BSD City Kavling", label: "Overview cluster" },
       { client: "Lake View", label: "Properti tepi danau" },
       { client: "Rumah 1 Man", label: "Showcase layout terbaik" },
-      { client: "@docartclinic", label: "Manajemen media sosial" },
-      { client: "@sealeadermarine", label: "Manajemen media sosial" },
-      { client: "@clothing.else", label: "Manajemen media sosial" },
-      { client: "@pods_indonesia", label: "Manajemen media sosial" },
-      { client: "@inpods_indonesia", label: "Manajemen media sosial" },
-    ],
-  },
-  services: {
-    eyebrow: "Layanan — yang kami buat",
-    titleA: "Empat cara",
-    titleB: "kerja bareng kami",
-    cards: [
-      {
-        tag: "PRODUCTION",
-        title: "End-to-End Content Production",
-        copy: "Dari ideasi dan scripting sampai syuting dan edit, semuanya kami kerjakan sendiri, buat properti, bisnis komersial, maupun event.",
-        items: [
-          "Ideasi & scripting",
-          "Property videography & drone footage",
-          "Commercial ads video & dokumentasi event",
-          "Syuting di studio atau on-location",
-        ],
-      },
-      {
-        tag: "SOCIAL",
-        title: "Social Media Management",
-        copy: "Operasional konten lengkap buat feed kamu: direncanakan, disyuting, diedit, dan diposting sesuai jadwal, plus konsultasi bulanan.",
-        items: [
-          "Rencana konten & strategi bulanan",
-          "Konten Reels & TikTok",
-          "Desain feeds",
-          "Konsultasi bulanan",
-        ],
-      },
-      {
-        tag: "ADS",
-        title: "Advertising Specialist",
-        copy: "Video dan foto yang dibuat buat performa, bukan cuma estetika, dipotong buat Meta Ads dan platform mana pun tempat kamu pasang iklan.",
-        items: [
-          "Video & foto Meta Ads",
-          "Edit fokus performa",
-          "Ukuran sesuai placement",
-          "Aset siap pakai untuk website",
-        ],
-      },
-      {
-        tag: "UGC",
-        title: "UGC Campaign",
-        copy: "Konten gaya creator yang natural di feed, kepake buat iklan berbayar maupun postingan organik.",
-        items: [
-          "Footage gaya creator yang autentik",
-          "Format vertikal, siap jadi iklan",
-          "Kepake buat ads & organic",
-          "Dari brief sampai kirim, kami yang urus",
-        ],
-      },
     ],
   },
   why: {
     eyebrow: "Kenapa Natstudio",
     titleA: "Kenapa brand bertahan setelah",
-    titleB: "syuting pertama",
+    titleB: "shooting pertama",
     reasons: [
       {
-        tag: "SATU KRU",
-        title: "Orang yang sama, awal sampai akhir",
-        copy: "Bukan cuma vendor, tapi tim yang inget brief kamu dari awal. Yang merencanakan syuting kamu ada di lokasi, dan ikut mengedit. Tidak ada yang hilang karena serah terima.",
+        tag: "VIDEO DULU",
+        title: "Marketing sekarang wajib pakai video",
+        copy: "Di era digital, video jadi strategi pemasaran utama — khususnya buat industri properti yang jualan kepercayaan, bukan cuma unit.",
       },
       {
-        tag: "TANPA STOCK",
-        title: "Disyuting, bukan diunduh",
-        copy: "Semua frame yang kami kirim, kami buat sendiri. Konten kamu tidak akan muncul di feed orang lain.",
+        tag: "TANPA TIM",
+        title: "Gak perlu bangun tim in-house",
+        copy: "Produksi konten berkualitas secara konsisten butuh tim, alat, dan waktu yang jarang dimiliki bisnis kebanyakan. Kami jadi tim produksi kamu.",
       },
       {
-        tag: "PLATFORM-FIRST",
-        title: "Dipotong untuk tempatnya tayang",
-        copy: "Kami framing vertikal sejak di lokasi, bukan di crop tool. Tiap platform dapat ekspornya sendiri, bukan sekadar resize.",
+        tag: "REBUT PERHATIAN",
+        title: "Visual yang bikin orang berhenti scroll",
+        copy: "Di IG, TikTok, dan Facebook Ads, kualitas visual nentuin siapa yang dilirik dan dipercaya calon konsumen.",
       },
       {
-        tag: "TEPAT JADWAL",
-        title: "Pengiriman yang bisa diandalkan",
-        copy: "Tanggal syuting pasti, tanggal kirim pasti. Kalender konten kamu terisi sebelum bulan dimulai.",
+        tag: "END-TO-END",
+        title: "Dari ide sampai siap posting",
+        copy: "Ideasi, scripting, shooting, sampai editing — semua kami kerjain, sampai kontenmu siap dipakai buat branding dan bikin leads & penjualan naik.",
       },
     ],
   },
   process: {
     eyebrow: "Proses — jalannya project",
-    titleA: "Enam frame,",
-    titleB: "awal sampai akhir",
+    titleA: "Step by step,",
+    titleB: "NatStudio bikin kontenmu",
     steps: [
       {
         meta: "LANGKAH 1",
@@ -417,7 +303,7 @@ const id: typeof en = {
       {
         meta: "LANGKAH 3",
         title: "Produksi On-Site",
-        copy: "Syuting batch di lokasi kamu atau studio kami.",
+        copy: "Shooting batch di lokasi kamu atau studio kami.",
       },
       {
         meta: "LANGKAH 4",
@@ -448,7 +334,7 @@ const id: typeof en = {
         features: [
           "Konsultasi & brainstorming gratis",
           "Script / outline konten",
-          "Syuting on location pakai alat kami",
+          "Shooting on location pakai alat kami",
           "Video editing",
           "1 revisi minor",
         ],
@@ -464,7 +350,7 @@ const id: typeof en = {
           "10 video per bulan",
           "Konsultasi & concepting gratis",
           "Drone service gratis",
-          "Jadwal syuting fleksibel bareng kru kami",
+          "Jadwal shooting fleksibel bareng kru kami",
           "Revisi minor per video",
         ],
         price: "350K",
@@ -478,7 +364,7 @@ const id: typeof en = {
         features: [
           "Strategi & rencana konten",
           "Desain feeds",
-          "Syuting on-site rutin",
+          "Shooting on-site rutin",
           "Editing semua video",
           "Konsultasi bulanan",
         ],
@@ -489,16 +375,16 @@ const id: typeof en = {
         cta: "Pilih Content Management",
       },
     ],
-    note: "Mau launching besar, atau cuma butuh satu kali syuting? Kami juga mengerjakan project satuan. Ceritakan yang mau kamu buat, kami beri harga terus terang:",
-    referral: "Promo referral: ajak klien baru, dapat diskon 20%.",
+    note: "Mau launching besar, atau cuma butuh satu kali shooting? Kami juga mengerjakan project satuan. Ceritakan yang mau kamu buat, kami beri harga terus terang:",
+    referral: "Promo referral: ajak klien baru, dapat diskon 10%.",
   },
   testimonials: {
-    eyebrow: "Dari mulut ke mulut",
+    eyebrow: "Testimonial",
     titleA: "Bukan cuma kami yang",
     titleB: "bilang begitu",
     items: [
       { quote: "Nggak perlu mikirin konten lagi. Tinggal approve, tinggal posting.", tag: "Klien, F&B" },
-      { quote: "Jadwal syuting selalu tepat, revisinya jelas nggak muter-muter.", tag: "Klien, Skincare" },
+      { quote: "Jadwal shooting selalu tepat, revisinya jelas nggak muter-muter.", tag: "Klien, Skincare" },
       { quote: "Awalnya ragu remote, ternyata hasilnya malah lebih rapi dari yang di kota.", tag: "Klien, Fashion" },
       { quote: "Enam bulan jalan, kontennya konsisten tiap bulan. Nggak pernah telat.", tag: "Klien, Kedai Kopi" },
       { quote: "Tim kami kecil, jadi ini yang bikin kami bisa fokus jualan, bukan mikirin konten.", tag: "Klien, Fitness Studio" },
@@ -511,18 +397,18 @@ const id: typeof en = {
   },
   location: {
     eyebrow: "Lokasi — jangkauan kami",
-    titleA: "Nasional, tapi",
-    titleB: "berangkat dari BSD",
+    titleA: "Nasional,",
+    titleB: "berbasis Tangsel–Tangerang",
     body: "Kami kerja remote ke seluruh Indonesia. Titik di bawah cuma base kru kami sekarang, bukan syarat lokasi.",
     badge: "Base operasional",
-    area: "BSD City, Tangerang Selatan",
-    note: "Alamat lengkap belum final. Titik peta ini placeholder sampai alamat studionya siap.",
+    area: "Paradise Serpong City, Tangerang Selatan",
+    note: "Ini base kru kami. Shooting bisa on-location atau di sini, by appointment.",
     points: [
-      "Syuting on-location ke kota kamu, bukan cuma di sekitar BSD",
+      "Shooting on-location ke kota kamu, bukan cuma di sekitar Tangsel–Tangerang",
       "Koordinasi dan review semuanya remote, lewat WhatsApp",
-      "Nggak ada biaya tambahan buat kerja jarak jauh",
+      "Ada biaya transport untuk shoot di luar Jadetabek, dalam Jadetabek nggak ada biaya tambahan",
     ],
-    mapTag: "Peta — placeholder",
+    mapTag: "Studio kami",
   },
   faq: {
     eyebrow: "FAQ — sebelum kamu tanya",
@@ -531,7 +417,7 @@ const id: typeof en = {
     items: [
       {
         q: "Berapa lama pengerjaannya?",
-        a: "Pengiriman standar tujuh hari kerja sejak syuting. Edit short-form biasanya lebih cepat. Kalau kamu mengejar deadline peluncuran, bilang saat kickoff dan kami susun jadwal mundur dari tanggalnya.",
+        a: "Maksimal H+3 pengerjaan sejak shooting untuk konten standar. Kalau lebih kompleks atau durasinya panjang, waktunya bisa lebih lama — kami info dari awal biar kamu bisa rencanain jadwalnya.",
       },
       {
         q: "Siapa yang memiliki kontennya?",
@@ -547,7 +433,7 @@ const id: typeof en = {
       },
       {
         q: "Kami sudah punya agency. Masalah?",
-        a: "Sama sekali tidak. Banyak klien kami mempertahankan agency untuk strategi dan memakai kami murni untuk produksi. Kami syuting sesuai brief mereka, atau menulisnya bersama.",
+        a: "Sama sekali tidak. Banyak klien kami mempertahankan agency untuk strategi dan memakai kami murni untuk produksi. Kami shooting sesuai brief mereka, atau menulisnya bersama.",
       },
       {
         q: "Ada kontrak yang mengikat?",
@@ -560,7 +446,7 @@ const id: typeof en = {
     body: "Ceritakan yang mau kamu buat, kami balas dalam satu hari kerja dengan rencana dan harga — nggak pakai proposal berlembar-lembar.",
     elsewhere: "Media sosial",
     copyright: "© 2026 Natstudio. Hak cipta dilindungi.",
-    meta: "Syuting on location · diedit in-house",
+    meta: "Shooting on location · diedit in-house",
   },
 };
 

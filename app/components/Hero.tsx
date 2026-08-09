@@ -6,14 +6,10 @@ import { waLink } from "@/lib/contact";
 import Lightbox from "./Lightbox";
 
 const stripFrames = [
-  { num: "001", ph: "ph-3", video: "34408" },
-  { num: "002", ph: "ph-6", video: "50635" },
-  { num: "003", ph: "ph-1", video: "50641" },
-  { num: "004", ph: "ph-9", video: "46353" },
-  { num: "005", ph: "ph-12", video: "44066" },
-  { num: "006", ph: "ph-4", video: "44076" },
-  { num: "007", ph: "ph-7", video: "44054" },
-  { num: "008", ph: "ph-2", video: "44074" },
+  { num: "001", ph: "ph-3", video: "armont-rizky" },
+  { num: "002", ph: "ph-6", video: "eonna-elyon" },
+  { num: "003", ph: "ph-1", video: "gramercy-natalia" },
+  { num: "004", ph: "ph-9", video: "sakura-terrace" },
 ];
 
 function delay(i: number): CSSProperties {
@@ -182,7 +178,7 @@ export default function Hero() {
         <div className="overflow-hidden py-2">
           <div className="filmstrip-track flex w-max">
             <StripSet note={t.hero.stripNote} onOpen={setActiveIndex} />
-            <StripSet note={t.hero.stripNote} hidden />
+            <StripSet note={t.hero.stripNote} hidden onOpen={setActiveIndex} />
           </div>
         </div>
         <div className="sprocket-thin" aria-hidden="true" />
