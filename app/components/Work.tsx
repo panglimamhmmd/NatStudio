@@ -45,7 +45,7 @@ export default function Work() {
                 className="block w-full text-left"
                 aria-label={`Open ${frame.title}: ${frame.subtitle}`}
               >
-                <div className="relative aspect-3/2 overflow-hidden rounded-lg border border-line transition-all duration-300 group-hover:scale-[1.03] group-hover:border-accent">
+                <div className="relative aspect-3/2 overflow-hidden rounded-lg border border-line transition-all duration-300 group-hover:scale-[1.03] group-hover:border-accent group-active:scale-[1.03] group-active:border-accent">
                   <PixelTransition
                     interactive={false}
                     aspectRatio="0%"
@@ -97,6 +97,17 @@ export default function Work() {
           </li>
         ))}
       </ul>
+
+      <Reveal delay={160} className="mt-10 flex justify-center">
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-md border border-line px-6 py-3 text-sm font-semibold text-fg transition-colors duration-300 hover:border-accent hover:text-accent"
+        >
+          {t.work.seeMore}
+        </a>
+      </Reveal>
 
       {activeIndex !== null && (
         <Lightbox

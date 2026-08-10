@@ -445,7 +445,7 @@ export default function Preloader() {
       <div className="absolute inset-x-0 bottom-0 flex flex-col">
         <div className="flex items-end justify-between px-5 pb-4 sm:px-8 sm:pb-6">
           <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted/80 tabular-nums">
-            Memuat reel — {progress}%
+            Memuat reel: {progress}%
           </p>
           <p className="preloader-hint font-mono text-[10px] uppercase tracking-[0.2em] text-muted/50">
             Ketuk untuk lewati

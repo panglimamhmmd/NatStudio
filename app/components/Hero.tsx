@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useLanguage } from "@/lib/language";
 import { waLink } from "@/lib/contact";
 import Lightbox from "./Lightbox";
@@ -78,7 +78,7 @@ function StripSet({
             />
             <svg
               viewBox="0 0 24 24"
-              className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 text-white/60 transition-transform duration-300 group-hover:scale-110"
+              className="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 text-white/60 transition-transform duration-300 group-hover:scale-110 group-active:scale-110"
               aria-hidden="true"
               fill="currentColor"
             >
@@ -102,6 +102,24 @@ export default function Hero() {
   const wordsA = t.hero.titleA.split(" ").length;
   const wordsB = t.hero.titleB.split(" ").length;
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [dragging, setDragging] = useState(false);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    };
+  }, []);
+
+  const handleTouchStart = () => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    setDragging(true);
+  };
+
+  const handleScroll = () => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => setDragging(false), 2000);
+  };
 
   const lightboxFrames = stripFrames.map((frame) => ({
     num: frame.num,
@@ -200,10 +218,18 @@ export default function Hero() {
         </p>
       </div>
 
-      {/* Portrait film strip — 9:16 video slots. Pauses on hover, static under reduced motion */}
-      <div id="hero-filmstrip" className="filmstrip scroll-mt-24 border-y border-line bg-card/70">
+      {/* Portrait film strip — 9:16 video slots. Pauses on hover/touch, swipeable
+          on mobile, static under reduced motion */}
+      <div
+        id="hero-filmstrip"
+        className={`filmstrip scroll-mt-24 border-y border-line bg-card/70${dragging ? " is-interacting" : ""}`}
+      >
         <div className="sprocket-thin" aria-hidden="true" />
-        <div className="overflow-hidden py-2">
+        <div
+          className="filmstrip-scroll py-2"
+          onTouchStart={handleTouchStart}
+          onScroll={handleScroll}
+        >
           <div className="filmstrip-track flex w-max">
             <StripSet note={t.hero.stripNote} onOpen={setActiveIndex} />
             <StripSet note={t.hero.stripNote} hidden onOpen={setActiveIndex} />

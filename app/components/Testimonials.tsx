@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/lib/language";
 import type { Dict } from "@/lib/dictionary";
 import Reveal from "./Reveal";
@@ -66,7 +66,27 @@ function Row({
   reverse?: boolean;
 }) {
   const cards = items.map((item, i) => ({ ...item, ph: ph[i % ph.length] }));
-  const [paused, setPaused] = useState(false);
+  const [explicitPaused, setExplicitPaused] = useState(false);
+  const [dragging, setDragging] = useState(false);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    };
+  }, []);
+
+  const handleTouchStart = () => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    setDragging(true);
+  };
+
+  const handleScroll = () => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => setDragging(false), 2000);
+  };
+
+  const paused = explicitPaused || dragging;
 
   return (
     <ClickSpark
@@ -75,7 +95,9 @@ function Row({
       sparkRadius={18}
       duration={400}
       className={`marquee-row${paused ? " is-interacting" : ""}`}
-      onClick={() => setPaused((p) => !p)}
+      onClick={() => setExplicitPaused((p) => !p)}
+      onTouchStart={handleTouchStart}
+      onScroll={handleScroll}
     >
       <div
         className={`flex w-max gap-4 ${reverse ? "marquee-track-reverse" : "marquee-track"}`}

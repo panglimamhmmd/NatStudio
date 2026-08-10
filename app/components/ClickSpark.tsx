@@ -16,6 +16,8 @@ interface ClickSparkProps {
   style?: CSSProperties;
   children?: ReactNode;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onTouchStart?: React.TouchEventHandler<HTMLDivElement>;
+  onScroll?: React.UIEventHandler<HTMLDivElement>;
 }
 
 interface Spark {
@@ -37,6 +39,8 @@ export default function ClickSpark({
   style,
   children,
   onClick,
+  onTouchStart,
+  onScroll,
 }: ClickSparkProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const sparksRef = useRef<Spark[]>([]);
@@ -153,6 +157,8 @@ export default function ClickSpark({
       className={`relative ${className}`}
       style={style}
       onClick={handleClick}
+      onTouchStart={onTouchStart}
+      onScroll={onScroll}
     >
       <canvas
         ref={canvasRef}

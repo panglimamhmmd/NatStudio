@@ -47,7 +47,7 @@ export default function Location() {
                   className="flex items-baseline gap-2 text-sm text-fg/85"
                 >
                   <span className="text-accent" aria-hidden="true">
-                    —
+                    →
                   </span>
                   {point}
                 </li>
@@ -61,7 +61,7 @@ export default function Location() {
           >
             <iframe
               src={MAP_SRC}
-              title={`${t.location.area} — ${t.location.mapTag}`}
+              title={`${t.location.area} · ${t.location.mapTag}`}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               className="pointer-events-none absolute inset-0 h-full w-full"
@@ -72,7 +72,7 @@ export default function Location() {
               target="_blank"
               rel="noopener noreferrer"
               className="group absolute inset-0 z-10 transition-colors hover:bg-base/10"
-              aria-label={`${t.location.area} — ${t.location.mapTag}`}
+              aria-label={`${t.location.area} · ${t.location.mapTag}`}
             >
               <span className="pointer-events-none absolute left-2 top-2 rounded-lg bg-base/80 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-accent-soft transition-colors group-hover:text-accent">
                 {t.location.mapTag} ↗

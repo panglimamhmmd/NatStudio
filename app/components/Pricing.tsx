@@ -69,7 +69,7 @@ export default function Pricing() {
                       className="flex items-baseline gap-2 text-sm text-fg/85"
                     >
                       <span className="text-accent" aria-hidden="true">
-                        —
+                        →
                       </span>
                       {feature}
                     </li>

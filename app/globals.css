@@ -141,6 +141,14 @@ section[id] {
   filter: brightness(1) contrast(1) saturate(1);
 }
 
+/* Touch devices have no real hover — show the print already developed
+   instead of leaving it stuck dim with no way to "hover" it into view */
+@media (hover: none) {
+  .frame-media {
+    filter: brightness(1) contrast(1) saturate(1);
+  }
+}
+
 /* Duotone tint — unifies mixed-source footage (varying color casts) toward
    the brand's cyan/charcoal palette regardless of the clip's original hue */
 .frame-tint {
@@ -185,7 +193,31 @@ section[id] {
   animation: filmstrip 23s linear infinite;
 }
 
-.filmstrip:hover .filmstrip-track {
+.filmstrip-scroll {
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.filmstrip-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.filmstrip-scroll .frame {
+  scroll-snap-align: start;
+}
+
+/* Hover-to-pause only makes sense on real pointer devices — on touch,
+   pausing is handled in JS on touchstart/pointerdown instead, so this
+   doesn't get stuck "hovered" after a tap */
+@media (hover: hover) and (pointer: fine) {
+  .filmstrip:hover .filmstrip-track {
+    animation-play-state: paused;
+  }
+}
+
+.filmstrip.is-interacting .filmstrip-track {
   animation-play-state: paused;
 }
 
@@ -200,7 +232,10 @@ section[id] {
    transparent so cards look like they drift in and out rather than crop
    --------------------------------------------------------------------------- */
 .marquee-row {
-  overflow: hidden;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   padding-block: 0.5rem;
   cursor: pointer;
   mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
@@ -211,6 +246,14 @@ section[id] {
     black 92%,
     transparent
   );
+}
+
+.marquee-row::-webkit-scrollbar {
+  display: none;
+}
+
+.marquee-row article {
+  scroll-snap-align: start;
 }
 
 .marquee-track {
