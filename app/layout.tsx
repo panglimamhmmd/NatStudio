@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono, Fraunces } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { LanguageProvider } from "@/lib/language";
 import Preloader from "./components/Preloader";
 import "./globals.css";
@@ -101,6 +102,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </noscript>
         <Preloader />
         <LanguageProvider>{children}</LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
