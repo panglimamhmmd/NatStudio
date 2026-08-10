@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { setLightboxOpen } from "@/lib/lightbox";
 
 const CLOSE_MS = 200;
@@ -152,7 +153,7 @@ export default function Lightbox({
     pointerStartX.current = null;
   };
 
-  return (
+  return createPortal(
     <div
       ref={containerRef}
       role="dialog"
@@ -303,6 +304,7 @@ export default function Lightbox({
           <p className="text-xs text-muted">{frame.subtitle}</p>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
