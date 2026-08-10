@@ -37,10 +37,10 @@ export default function Pricing() {
                 glareOpacity={tierMeta[i].featured ? 0.35 : 0.2}
                 glareSize={220}
                 transitionDuration={700}
-                className={`flex h-full flex-col rounded-lg border bg-card p-6 transition-all duration-300 hover:scale-[1.02] sm:p-8 ${
+                className={`flex h-full flex-col rounded-lg border bg-card p-6 transition-all duration-300 hover:scale-[1.02] active:scale-[1.02] sm:p-8 ${
                   tierMeta[i].featured
                     ? "border-accent shadow-[0_0_1px_rgba(12,192,223,0.6),0_0_36px_-4px_rgba(12,192,223,0.45)]"
-                    : "border-line hover:border-accent-deep"
+                    : "border-line hover:border-accent-deep active:border-accent-deep"
                 }`}
               >
                 <div className="flex items-center justify-between">
@@ -79,7 +79,7 @@ export default function Pricing() {
                   href={waLink(lang)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`mt-7 rounded-lg px-5 py-2.5 text-center text-sm font-semibold transition-all hover:scale-[1.03] ${
+                  className={`mt-7 rounded-lg px-5 py-2.5 text-center text-sm font-semibold transition-all hover:scale-[1.03] active:scale-[1.03] ${
                     tierMeta[i].featured
                       ? "bg-accent text-black hover:bg-accent-soft"
                       : "border border-line text-fg hover:border-accent hover:text-accent"

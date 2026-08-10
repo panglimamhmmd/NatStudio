@@ -116,7 +116,7 @@ export default function Hero() {
     setDragging(true);
   };
 
-  const handleScroll = () => {
+  const armResumeTimer = () => {
     if (resumeTimer.current) clearTimeout(resumeTimer.current);
     resumeTimer.current = setTimeout(() => setDragging(false), 2000);
   };
@@ -228,7 +228,8 @@ export default function Hero() {
         <div
           className="filmstrip-scroll py-2"
           onTouchStart={handleTouchStart}
-          onScroll={handleScroll}
+          onTouchEnd={armResumeTimer}
+          onScroll={armResumeTimer}
         >
           <div className="filmstrip-track flex w-max">
             <StripSet note={t.hero.stripNote} onOpen={setActiveIndex} />

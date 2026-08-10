@@ -53,6 +53,11 @@ export default function GlareHover({
     <div
       className={`glare-hover ${playOnce ? "glare-hover--play-once" : ""} ${className}`}
       style={{ ...vars, ...style }}
+      // iOS Safari only evaluates :hover/:active on an element (or its
+      // descendants via group-hover/group-active) if it has a bound touch
+      // listener — without this, the glare sweep and any active: styling
+      // on cards using GlareHover never fire on touch at all.
+      onTouchStart={() => {}}
     >
       {children}
     </div>

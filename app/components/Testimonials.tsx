@@ -32,12 +32,12 @@ function Card({ quote, tag, ph }: Item & { ph: string }) {
         glareAngle={-30}
         glareSize={220}
         transitionDuration={700}
-        className="group flex h-full min-h-[188px] flex-col rounded-lg border border-line bg-card p-5 transition-all duration-300 hover:z-10 hover:scale-[1.03] hover:border-accent hover:bg-card-hi sm:min-h-[176px] sm:p-6"
+        className="group flex h-full min-h-[188px] flex-col rounded-lg border border-line bg-card p-5 transition-all duration-300 hover:z-10 hover:scale-[1.03] hover:border-accent hover:bg-card-hi active:z-10 active:scale-[1.03] active:border-accent active:bg-card-hi sm:min-h-[176px] sm:p-6"
       >
-        <p className="text-sm leading-relaxed text-fg transition-colors duration-300 group-hover:text-accent-soft sm:text-[1rem]">
+        <p className="text-sm leading-relaxed text-fg transition-colors duration-300 group-hover:text-accent-soft group-active:text-accent-soft sm:text-[1rem]">
           &ldquo;{quote}&rdquo;
         </p>
-        <div className="mt-auto flex items-center gap-3 border-t border-line pt-4 transition-colors duration-300 group-hover:border-accent/40">
+        <div className="mt-auto flex items-center gap-3 border-t border-line pt-4 transition-colors duration-300 group-hover:border-accent/40 group-active:border-accent/40">
           <span
             className={`ph ${ph} relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full`}
             aria-hidden="true"
@@ -47,7 +47,7 @@ function Card({ quote, tag, ph }: Item & { ph: string }) {
               {monogram(tag)}
             </span>
           </span>
-          <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted transition-colors duration-300 group-hover:text-fg">
+          <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted transition-colors duration-300 group-hover:text-fg group-active:text-fg">
             {tag}
           </p>
         </div>
@@ -81,7 +81,7 @@ function Row({
     setDragging(true);
   };
 
-  const handleScroll = () => {
+  const armResumeTimer = () => {
     if (resumeTimer.current) clearTimeout(resumeTimer.current);
     resumeTimer.current = setTimeout(() => setDragging(false), 2000);
   };
@@ -97,7 +97,8 @@ function Row({
       className={`marquee-row${paused ? " is-interacting" : ""}`}
       onClick={() => setExplicitPaused((p) => !p)}
       onTouchStart={handleTouchStart}
-      onScroll={handleScroll}
+      onTouchEnd={armResumeTimer}
+      onScroll={armResumeTimer}
     >
       <div
         className={`flex w-max gap-4 ${reverse ? "marquee-track-reverse" : "marquee-track"}`}

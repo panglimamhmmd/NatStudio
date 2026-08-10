@@ -59,6 +59,11 @@ function ReasonCard({ reason, image }: { reason: Reason; image: string }) {
       ref={cardRef}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
+      // No-op touch listener: iOS Safari only evaluates :hover/:active
+      // (and group-hover:/group-active: on descendants) on an element that
+      // has a bound touch listener, otherwise this card's reveal never
+      // triggers on tap.
+      onTouchStart={() => {}}
       className="group relative overflow-hidden rounded-lg border-t border-line p-6 will-change-transform"
     >
       <Image
@@ -66,18 +71,18 @@ function ReasonCard({ reason, image }: { reason: Reason; image: string }) {
         alt=""
         fill
         sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-        className="scale-110 -rotate-1 object-cover opacity-0 transition-[opacity,transform] duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100 group-hover:rotate-0 group-hover:opacity-100"
+        className="scale-110 -rotate-1 object-cover opacity-0 transition-[opacity,transform] duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-100 group-hover:rotate-0 group-hover:opacity-100 group-active:scale-100 group-active:rotate-0 group-active:opacity-100"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-black/0 transition-colors duration-[1600ms] ease-out delay-150 group-hover:bg-black/70"
+        className="absolute inset-0 bg-black/0 transition-colors duration-[1600ms] ease-out delay-150 group-hover:bg-black/70 group-active:bg-black/70"
       />
       <div className="relative">
         <p className="font-mono text-[11px] tracking-[0.2em] text-accent-soft">{reason.tag}</p>
-        <h3 className="mt-3 text-lg font-semibold leading-snug transition-colors group-hover:text-accent">
+        <h3 className="mt-3 text-lg font-semibold leading-snug transition-colors group-hover:text-accent group-active:text-accent">
           {reason.title}
         </h3>
-        <p className="mt-2 text-sm text-muted transition-colors group-hover:text-white/90">
+        <p className="mt-2 text-sm text-muted transition-colors group-hover:text-white/90 group-active:text-white/90">
           {reason.copy}
         </p>
       </div>
