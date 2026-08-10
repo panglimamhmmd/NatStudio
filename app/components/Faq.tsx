@@ -3,6 +3,7 @@
 import { useLanguage } from "@/lib/language";
 import Reveal from "./Reveal";
 import Eyebrow from "./Eyebrow";
+import GradientText from "./GradientText";
 
 export default function Faq() {
   const { t } = useLanguage();
@@ -12,7 +13,7 @@ export default function Faq() {
       <Reveal>
         <Eyebrow>{t.faq.eyebrow}</Eyebrow>
         <h2 className="display-type mt-3 text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
-          {t.faq.titleA} <span className="heading-accent">{t.faq.titleB}</span>
+          {t.faq.titleA} <GradientText className="heading-accent">{t.faq.titleB}</GradientText>
         </h2>
       </Reveal>
 
@@ -21,7 +22,7 @@ export default function Faq() {
           <Reveal key={faq.q} delay={i * 60}>
             <details
               name="faq-accordion"
-              className="faq-item group border-b border-line transition-all duration-300 open:rounded-md open:border-b-transparent open:bg-card open:px-4"
+              className="faq-item group border-b border-line transition-all duration-300 open:rounded-lg open:border-b-transparent open:bg-card open:px-4"
             >
               <summary className="flex items-center justify-between gap-4 py-5 text-base font-medium text-fg transition-colors sm:text-lg">
                 <span className="transition-colors group-hover:text-accent group-open:text-accent">

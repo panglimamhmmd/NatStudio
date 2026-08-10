@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { setLightboxOpen } from "@/lib/lightbox";
 
 const CLOSE_MS = 200;
 
@@ -49,6 +50,11 @@ export default function Lightbox({
     setClosing(true);
     window.setTimeout(onClose, CLOSE_MS);
   };
+
+  useEffect(() => {
+    setLightboxOpen(true);
+    return () => setLightboxOpen(false);
+  }, []);
 
   useEffect(() => {
     closeRef.current?.focus();
@@ -163,7 +169,7 @@ export default function Lightbox({
         ref={closeRef}
         type="button"
         onClick={requestClose}
-        className="absolute right-4 top-4 z-20 rounded-md border border-line bg-card p-2 text-fg transition-colors hover:border-accent hover:text-accent"
+        className="absolute right-4 top-4 z-20 rounded-lg border border-line bg-card p-2 text-fg transition-colors hover:border-accent hover:text-accent"
         aria-label="Close"
       >
         <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -172,7 +178,7 @@ export default function Lightbox({
       </button>
 
       <div
-        className={`lightbox-panel relative w-full ${panelWidth} overflow-hidden rounded-md border border-line bg-card ${
+        className={`lightbox-panel relative w-full ${panelWidth} overflow-hidden rounded-lg border border-line bg-card ${
           closing ? "is-closing" : ""
         }`}
         onClick={(e) => e.stopPropagation()}

@@ -5,6 +5,8 @@ import { useLanguage } from "@/lib/language";
 import Reveal from "./Reveal";
 import Eyebrow from "./Eyebrow";
 import Lightbox from "./Lightbox";
+import PixelTransition from "./PixelTransition";
+import GradientText from "./GradientText";
 
 const frameMeta = [
   { num: "003", ph: "ph-3" },
@@ -28,7 +30,7 @@ export default function Work() {
       <Reveal>
         <Eyebrow>{t.work.eyebrow}</Eyebrow>
         <h2 className="display-type mt-3 text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
-          {t.work.titleA} <span className="heading-accent">{t.work.titleB}</span>
+          {t.work.titleA} <GradientText className="heading-accent">{t.work.titleB}</GradientText>
         </h2>
         <p className="mt-4 max-w-lg text-muted">{t.work.sub}</p>
       </Reveal>
@@ -43,15 +45,46 @@ export default function Work() {
                 className="block w-full text-left"
                 aria-label={`Open ${frame.title}: ${frame.subtitle}`}
               >
-                <div className="relative aspect-3/2 overflow-hidden rounded-md border border-line transition-all duration-300 group-hover:scale-[1.03] group-hover:border-accent">
-                  <div className={`frame-media ph ${frame.ph} absolute inset-0`} />
-                  <span
-                    className={`absolute left-2 top-2 font-mono text-[10px] uppercase tracking-widest ${
-                      frame.highlight ? "text-accent" : "text-white/85"
-                    }`}
-                  >
-                    Frame {frame.num}
-                  </span>
+                <div className="relative aspect-3/2 overflow-hidden rounded-lg border border-line transition-all duration-300 group-hover:scale-[1.03] group-hover:border-accent">
+                  <PixelTransition
+                    interactive={false}
+                    aspectRatio="0%"
+                    gridSize={8}
+                    pixelColor="var(--base)"
+                    animationStepDuration={0.25}
+                    className="absolute inset-0 h-full w-full"
+                    firstContent={
+                      <div className="relative h-full w-full">
+                        <div className={`frame-media ph ${frame.ph} absolute inset-0`} />
+                        <span
+                          className={`absolute left-2 top-2 font-mono text-[10px] uppercase tracking-widest ${
+                            frame.highlight ? "text-accent" : "text-white/85"
+                          }`}
+                        >
+                          Frame {frame.num}
+                        </span>
+                      </div>
+                    }
+                    secondContent={
+                      <div className="relative h-full w-full">
+                        <div className={`frame-media ph ${frame.ph} absolute inset-0`} />
+                        <div className="frame-tint absolute inset-0" aria-hidden="true" />
+                        <span
+                          className={`absolute left-2 top-2 font-mono text-[10px] uppercase tracking-widest ${
+                            frame.highlight ? "text-accent" : "text-white/85"
+                          }`}
+                        >
+                          Frame {frame.num}
+                        </span>
+                        <span className="absolute inset-0 flex items-center justify-center gap-1.5 font-mono text-[11px] uppercase tracking-widest text-accent-soft">
+                          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true">
+                            <path d="M8 5.5v13l11-6.5-11-6.5Z" />
+                          </svg>
+                          View reel
+                        </span>
+                      </div>
+                    }
+                  />
                 </div>
                 <p className="mt-2 text-sm font-medium leading-snug">
                   {frame.title}

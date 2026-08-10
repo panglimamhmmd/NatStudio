@@ -16,8 +16,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <Work />
-        <Sprocket />
+        {/* <Work /> */}
+        {/* <Sprocket /> */}
         <Why />
         <Process />
         <Pricing />
@@ -27,7 +27,6 @@ export default function Home() {
         <Sprocket />
         <Faq />
       </main>
-      <Sprocket />
       <Footer />
     </>
   );

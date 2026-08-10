@@ -258,6 +258,130 @@ section[id] {
   }
 }
 
+/* Shiny text — metallic sheen sweep, see app/components/ShinyText.tsx.
+   Declared on both the wrapper and any nested .word spans: background-clip:
+   text only clips an element's OWN text, so if the wrapper's text actually
+   lives inside child elements (e.g. the hero's word-by-word reveal), the
+   wrapper alone has nothing to clip and renders invisible. */
+.shiny-text,
+.shiny-text .word {
+  background-image: var(--shiny-gradient);
+  background-size: 200% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* WebKit clips -webkit-background-clip:text to the LINE BOX, not the
+     glyph ink — background-size alone can't fix that, the mask is cut at
+     the box regardless. The h1's leading-[0.95] line box is tighter than
+     Jakarta Sans's descenders, so without headroom here Safari chops the
+     tail off the "j" in "jadi". line-height gives the clip mask that
+     headroom; .gradient-text below pulls its line back up with a negative
+     margin so the two-line title still reads as tight as leading-[0.95]
+     intended. */
+  line-height: 1.2;
+}
+
+.shiny-text {
+  animation-name: shiny-sweep;
+  animation-duration: var(--shiny-duration);
+  animation-delay: var(--shiny-delay);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: var(--shiny-direction);
+  animation-play-state: var(--shiny-play-state);
+}
+
+.shiny-text .word {
+  animation-name: pop-in, shiny-sweep;
+  animation-duration: 0.55s, var(--shiny-duration);
+  animation-timing-function: cubic-bezier(0.22, 0.68, 0.32, 1), linear;
+  animation-delay: calc(var(--i, 0) * 90ms), var(--shiny-delay);
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: forwards, none;
+  animation-direction: normal, var(--shiny-direction);
+  animation-play-state: running, var(--shiny-play-state);
+}
+
+.shiny-text-disabled,
+.shiny-text-disabled .word {
+  animation-name: none;
+}
+
+.shiny-text-disabled .word {
+  /* keep the pop-in entrance even with the sweep disabled */
+  animation-name: pop-in;
+}
+
+@keyframes shiny-sweep {
+  from {
+    background-position: 150% center;
+  }
+  to {
+    background-position: -50% center;
+  }
+}
+
+/* Gradient text — animated multi-color sweep, see
+   app/components/GradientText.tsx. Same dual-selector reasoning as
+   .shiny-text above: background-clip: text only clips an element's OWN
+   text, so nested .word spans need the rule repeated on them too.
+   Reference (reactbits.dev GradientText) ping-pongs background-position
+   back and forth (yoyo: true by default) rather than looping one-way —
+   a one-way 0%→100% pass has to snap back to 0% on each iteration, and
+   that snap is visible even with the color list looped. `alternate`
+   reverses direction instead of snapping, so the sweep never jumps. */
+.gradient-text,
+.gradient-text .word {
+  background-image: var(--gradient-image);
+  /* At background-position 0%/100% the image is flush against that edge by
+     definition (zero buffer on one side, however big the image), so the
+     gradient-sweep keyframes below stay inside a 20%–80% band instead of
+     the full 0–100% — that keeps a buffer on both sides at every point in
+     the sweep. */
+  background-size: 400% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* Same WebKit line-box clip issue as .shiny-text above — Fraunces
+     italic's swashes (e.g. the terminal "s" in "bisnis") get chopped by
+     Safari without this headroom. The negative margin below pulls this
+     line back up so the two-line hero title stays visually as tight as
+     leading-[0.95] intended, without shrinking the clip mask back down. */
+  line-height: 1.2;
+}
+
+.gradient-text {
+  animation-name: gradient-sweep;
+  animation-duration: var(--gradient-duration);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-play-state: var(--gradient-play-state);
+  margin-top: -0.12em;
+}
+
+.gradient-text .word {
+  animation-name: pop-in, gradient-sweep;
+  animation-duration: 0.55s, var(--gradient-duration);
+  animation-timing-function: cubic-bezier(0.22, 0.68, 0.32, 1), linear;
+  animation-delay: calc(var(--i, 0) * 90ms), 0s;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: forwards, none;
+  animation-direction: normal, alternate;
+  animation-play-state: running, var(--gradient-play-state);
+}
+
+@keyframes gradient-sweep {
+  from {
+    background-position: 20% center;
+  }
+  to {
+    background-position: 80% center;
+  }
+}
+
 /* Held paused (at their opacity:0 first frame) until Preloader clears this
    class — otherwise these fire the instant Hero mounts, hidden behind the
    opaque overlay, and finish before it ever fades out. */
@@ -450,6 +574,83 @@ section[id] {
 }
 
 /* ---------------------------------------------------------------------------
+   LightRays — WebGL cinematic light-beam ambient background
+   --------------------------------------------------------------------------- */
+.light-rays-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ---------------------------------------------------------------------------
+   GlareHover — diagonal light sweep on hover (cards, thumbnails)
+   --------------------------------------------------------------------------- */
+.glare-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.glare-hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    var(--gh-angle, -45deg),
+    hsla(0, 0%, 0%, 0) 60%,
+    var(--gh-rgba, rgba(255, 255, 255, 0.5)) 70%,
+    hsla(0, 0%, 0%, 0),
+    hsla(0, 0%, 0%, 0) 100%
+  );
+  transition: var(--gh-duration, 650ms) ease;
+  background-size: var(--gh-size, 250%) var(--gh-size, 250%), 100% 100%;
+  background-repeat: no-repeat;
+  background-position: -100% -100%, 0 0;
+}
+
+.glare-hover:hover::before,
+.glare-hover:active::before {
+  background-position: 100% 100%, 0 0;
+}
+
+.glare-hover--play-once::before {
+  transition: none;
+}
+
+.glare-hover--play-once:hover::before {
+  transition: var(--gh-duration, 650ms) ease;
+  background-position: 100% 100%, 0 0;
+}
+
+/* ---------------------------------------------------------------------------
+   PixelTransition — staggered pixel dissolve between two layers on hover
+   --------------------------------------------------------------------------- */
+.pixel-transition__layer,
+.pixel-transition__pixels {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.pixel-transition__layer--active {
+  z-index: 2;
+}
+
+.pixel-transition__pixels {
+  z-index: 3;
+  pointer-events: none;
+}
+
+.pixel-transition__pixel {
+  position: absolute;
+  transition: opacity 0.05s linear;
+}
+
+/* ---------------------------------------------------------------------------
    Reduced motion — kill animation and transitions
    --------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
@@ -476,6 +677,10 @@ section[id] {
   .reveal {
     opacity: 1;
     transform: none;
+    transition: none;
+  }
+
+  .glare-hover::before {
     transition: none;
   }
 

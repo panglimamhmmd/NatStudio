@@ -12,6 +12,8 @@ export default function Preloader() {
   const [progress, setProgress] = useState(0);
 
   const contentRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
+  const artRef = useRef<SVGGElement>(null);
   const swooshRef = useRef<SVGPathElement>(null);
   const sparkRef = useRef<SVGCircleElement>(null);
   const sp1Ref = useRef<SVGPathElement>(null);
@@ -114,6 +116,22 @@ export default function Preloader() {
         String(Math.round((left + right) / 2))
       );
       tag3Ref.current?.setAttribute("x", String(right - 2));
+
+      // The hand-placed coordinates above (swoosh, sparkles, text) don't sit
+      // symmetrically inside the original 0-660 viewBox — there's far more
+      // empty space to the left of "Nat" than to the right of the swoosh's
+      // tail. Centering the <svg> box on screen still leaves the artwork
+      // itself looking pushed right, which is most visible on mobile where
+      // it fills most of the viewport width. Re-measure the actual rendered
+      // artwork and recenter the viewBox around it instead of the fixed box.
+      if (svgRef.current && artRef.current) {
+        const ab = artRef.current.getBBox();
+        const padX = 24;
+        svgRef.current.setAttribute(
+          "viewBox",
+          `${ab.x - padX} 0 ${ab.width + padX * 2} 262`
+        );
+      }
 
       const len = sw.getTotalLength();
       sw.style.strokeDasharray = String(len);
@@ -290,11 +308,16 @@ export default function Preloader() {
     >
       <div className="preloader-edge" />
 
-      <div ref={contentRef} className="flex flex-1 items-center justify-center">
+      <div
+        ref={contentRef}
+        className="absolute inset-0 flex items-center justify-center"
+      >
         <svg
+          ref={svgRef}
           viewBox="0 0 660 262"
           style={{ width: "min(460px, 82vw)", height: "auto", overflow: "visible" }}
         >
+          <g ref={artRef}>
           <circle
             ref={sparkRef}
             cx={600}
@@ -415,19 +438,22 @@ export default function Preloader() {
               STUDIO
             </text>
           </g>
+          </g>
         </svg>
       </div>
 
-      <div className="flex items-end justify-between px-5 pb-4 sm:px-8 sm:pb-6">
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted/80 tabular-nums">
-          Memuat reel — {progress}%
-        </p>
-        <p className="preloader-hint font-mono text-[10px] uppercase tracking-[0.2em] text-muted/50">
-          Ketuk untuk lewati
-        </p>
-      </div>
+      <div className="absolute inset-x-0 bottom-0 flex flex-col">
+        <div className="flex items-end justify-between px-5 pb-4 sm:px-8 sm:pb-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted/80 tabular-nums">
+            Memuat reel — {progress}%
+          </p>
+          <p className="preloader-hint font-mono text-[10px] uppercase tracking-[0.2em] text-muted/50">
+            Ketuk untuk lewati
+          </p>
+        </div>
 
-      <div className="preloader-edge" />
+        <div className="preloader-edge" />
+      </div>
     </div>
   );
 }

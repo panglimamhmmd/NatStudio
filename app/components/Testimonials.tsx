@@ -5,6 +5,10 @@ import { useLanguage } from "@/lib/language";
 import type { Dict } from "@/lib/dictionary";
 import Reveal from "./Reveal";
 import Eyebrow from "./Eyebrow";
+import GradientText from "./GradientText";
+import ShinyText from "./ShinyText";
+import GlareHover from "./GlareHover";
+import ClickSpark from "./ClickSpark";
 
 type Item = Dict["testimonials"]["items"][number];
 
@@ -21,24 +25,33 @@ function monogram(tag: string) {
 
 function Card({ quote, tag, ph }: Item & { ph: string }) {
   return (
-    <article className="group flex h-full min-h-[188px] w-72 shrink-0 snap-start flex-col rounded-md border border-line bg-card p-5 transition-all duration-300 hover:z-10 hover:scale-[1.03] hover:border-accent hover:bg-card-hi sm:w-80 sm:min-h-[176px] sm:p-6">
-      <p className="text-sm leading-relaxed text-fg transition-colors duration-300 group-hover:text-accent-soft sm:text-[1rem]">
-        &ldquo;{quote}&rdquo;
-      </p>
-      <div className="mt-auto flex items-center gap-3 border-t border-line pt-4 transition-colors duration-300 group-hover:border-accent/40">
-        <span
-          className={`ph ${ph} relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full`}
-          aria-hidden="true"
-        >
-          <span className="absolute inset-0 bg-black/25" />
-          <span className="relative m-auto font-mono text-[10px] font-bold uppercase text-white">
-            {monogram(tag)}
-          </span>
-        </span>
-        <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted transition-colors duration-300 group-hover:text-fg">
-          {tag}
+    <article className="h-full w-72 shrink-0 snap-start sm:w-80">
+      <GlareHover
+        glareColor="#0cc0df"
+        glareOpacity={0.2}
+        glareAngle={-30}
+        glareSize={220}
+        transitionDuration={700}
+        className="group flex h-full min-h-[188px] flex-col rounded-lg border border-line bg-card p-5 transition-all duration-300 hover:z-10 hover:scale-[1.03] hover:border-accent hover:bg-card-hi sm:min-h-[176px] sm:p-6"
+      >
+        <p className="text-sm leading-relaxed text-fg transition-colors duration-300 group-hover:text-accent-soft sm:text-[1rem]">
+          &ldquo;{quote}&rdquo;
         </p>
-      </div>
+        <div className="mt-auto flex items-center gap-3 border-t border-line pt-4 transition-colors duration-300 group-hover:border-accent/40">
+          <span
+            className={`ph ${ph} relative flex h-9 w-9 shrink-0 overflow-hidden rounded-full`}
+            aria-hidden="true"
+          >
+            <span className="absolute inset-0 bg-black/25" />
+            <span className="relative m-auto font-mono text-[10px] font-bold uppercase text-white">
+              {monogram(tag)}
+            </span>
+          </span>
+          <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted transition-colors duration-300 group-hover:text-fg">
+            {tag}
+          </p>
+        </div>
+      </GlareHover>
     </article>
   );
 }
@@ -56,7 +69,11 @@ function Row({
   const [paused, setPaused] = useState(false);
 
   return (
-    <div
+    <ClickSpark
+      sparkColor="#0cc0df"
+      sparkCount={10}
+      sparkRadius={18}
+      duration={400}
       className={`marquee-row${paused ? " is-interacting" : ""}`}
       onClick={() => setPaused((p) => !p)}
     >
@@ -75,7 +92,7 @@ function Row({
           </div>
         ))}
       </div>
-    </div>
+    </ClickSpark>
   );
 }
 
@@ -90,8 +107,10 @@ export default function Testimonials() {
         <Reveal>
           <Eyebrow>{t.testimonials.eyebrow}</Eyebrow>
           <h2 className="display-type mt-3 max-w-2xl text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
-            {t.testimonials.titleA}{" "}
-            <span className="heading-accent">{t.testimonials.titleB}</span>
+            <ShinyText color="var(--fg)" speed={2.6} shineColor="#eafcff">
+              {t.testimonials.titleA}
+            </ShinyText>{" "}
+            <GradientText className="heading-accent">{t.testimonials.titleB}</GradientText>
           </h2>
         </Reveal>
       </div>

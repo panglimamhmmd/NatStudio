@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/language";
 import Reveal from "./Reveal";
 import Eyebrow from "./Eyebrow";
 import type { Dict } from "@/lib/dictionary";
+import GradientText from "./GradientText";
 
 const stepMeta = [
   { num: "001", img: "sign-payment" },
@@ -19,7 +20,7 @@ type Step = Dict["process"]["steps"][number];
 
 function StepCard({ step, i }: { step: Step; i: number }) {
   return (
-    <div className="h-full overflow-hidden rounded-md border border-line bg-base transition-all duration-300 hover:scale-[1.02] hover:border-accent">
+    <div className="h-full overflow-hidden rounded-lg border border-line bg-base transition-all duration-300 hover:scale-[1.02] hover:border-accent">
       <div className="relative h-20">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -84,7 +85,7 @@ export default function Process() {
       // height has scrolled past — a straight 0..trackHeight mapping
       // felt sluggish.
       const progress = clamp(
-        ((window.innerHeight / 2 - rect.top) / rect.height) * 1.8,
+        ((window.innerHeight / 2 - rect.top) / rect.height) * 1.2,
         0,
         1,
       );
@@ -124,7 +125,7 @@ export default function Process() {
         <Reveal>
           <Eyebrow>{t.process.eyebrow}</Eyebrow>
           <h2 className="display-type mt-3 text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl">
-            {t.process.titleA} <span className="heading-accent">{t.process.titleB}</span>
+            {t.process.titleA} <GradientText className="heading-accent">{t.process.titleB}</GradientText>
           </h2>
         </Reveal>
       </div>

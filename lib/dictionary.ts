@@ -3,7 +3,7 @@ export type Lang = "en" | "id";
 const en = {
   nav: {
     items: [
-      { label: "Work", href: "#work" },
+      { label: "About", href: "#about" },
       { label: "Process", href: "#process" },
       { label: "Pricing", href: "#pricing" },
       { label: "Testimonials", href: "#testimonials" },
@@ -19,6 +19,7 @@ const en = {
     body: "NatStudio builds quality visual content, end-to-end. You get it done without the hassle, and every piece is ready to work as a business asset that earns—so you can make more money off it.",
     ctaWork: "See the work",
     ctaContact: "Start a project",
+    ctaMicro: "Free, no sales pitch, reply <24h",
     stripNote: "9:16 · video slot",
   },
   work: {
@@ -228,7 +229,7 @@ const en = {
 const id: typeof en = {
   nav: {
     items: [
-      { label: "Karya", href: "#work" },
+      { label: "About", href: "#about" },
       { label: "Proses", href: "#process" },
       { label: "Harga", href: "#pricing" },
       { label: "Testimoni", href: "#testimonials" },
@@ -244,6 +245,7 @@ const id: typeof en = {
     body: "NatStudio bantuin bikin visual konten berkualitas yang dibuat secara end-to-end. Kalian tinggal terima beres, dan setiap konten udah siap kerja jadi aset bisnis yang menghasilkan. Gak perlu repot—tinggal panen cuannya.",
     ctaWork: "Lihat karya",
     ctaContact: "Konsultasi gratis",
+    ctaMicro: "Gratis, gak pake sales pitch, respon <24 jam",
     stripNote: "9:16 · slot video",
   },
   work: {

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useLanguage } from "@/lib/language";
 import { waLink } from "@/lib/contact";
+import LightRays from "./LightRays";
 
 const socials = [
   { label: "Instagram", href: "#" },
@@ -15,7 +16,20 @@ export default function Footer() {
   const { t, lang } = useLanguage();
 
   return (
-    <footer id="contact" className="glow-top bg-card/70">
+    <footer id="contact" className="glow-top relative isolate overflow-hidden bg-card/70">
+      {/* <LightRays
+        className="absolute inset-0 -z-10 opacity-50"
+        raysOrigin="top-center"
+        raysColor="#0cc0df"
+        raysSpeed={0.9}
+        lightSpread={0.65}
+        rayLength={1.4}
+        fadeDistance={1.1}
+        saturation={0.9}
+        followMouse
+        mouseInfluence={0.08}
+        noiseAmount={0.05}
+      /> */}
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div>
@@ -34,7 +48,7 @@ export default function Footer() {
               href={waLink(lang)}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-3 inline-block rounded-md bg-accent px-4 py-2 text-sm font-semibold text-black transition-all hover:scale-105 hover:bg-accent-soft"
+              className="mt-3 inline-block rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-black transition-all hover:scale-105 hover:bg-accent-soft"
             >
               {t.nav.cta}
             </a>
