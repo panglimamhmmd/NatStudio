@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import { useLanguage } from "@/lib/language";
 import { waLink } from "@/lib/contact";
 import Lightbox from "./Lightbox";
@@ -103,23 +103,12 @@ export default function Hero() {
   const wordsB = t.hero.titleB.split(" ").length;
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [dragging, setDragging] = useState(false);
-  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    return () => {
-      if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    };
-  }, []);
-
-  const handleTouchStart = () => {
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    setDragging(true);
-  };
-
-  const armResumeTimer = () => {
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    resumeTimer.current = setTimeout(() => setDragging(false), 2000);
-  };
+  // iOS fires touchcancel instead of touchend once a touch is interpreted as
+  // a scroll/pan gesture, so both need to resume the marquee immediately —
+  // waiting on a debounced onScroll alone left it paused indefinitely.
+  const handleTouchStart = () => setDragging(true);
+  const handleTouchEnd = () => setDragging(false);
 
   const lightboxFrames = stripFrames.map((frame) => ({
     num: frame.num,
@@ -228,8 +217,8 @@ export default function Hero() {
         <div
           className="filmstrip-scroll py-2"
           onTouchStart={handleTouchStart}
-          onTouchEnd={armResumeTimer}
-          onScroll={armResumeTimer}
+          onTouchEnd={handleTouchEnd}
+          onTouchCancel={handleTouchEnd}
         >
           <div className="filmstrip-track flex w-max">
             <StripSet note={t.hero.stripNote} onOpen={setActiveIndex} />

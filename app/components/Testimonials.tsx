@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useLanguage } from "@/lib/language";
 import type { Dict } from "@/lib/dictionary";
 import Reveal from "./Reveal";
@@ -68,23 +68,12 @@ function Row({
   const cards = items.map((item, i) => ({ ...item, ph: ph[i % ph.length] }));
   const [explicitPaused, setExplicitPaused] = useState(false);
   const [dragging, setDragging] = useState(false);
-  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    return () => {
-      if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    };
-  }, []);
-
-  const handleTouchStart = () => {
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    setDragging(true);
-  };
-
-  const armResumeTimer = () => {
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    resumeTimer.current = setTimeout(() => setDragging(false), 2000);
-  };
+  // iOS fires touchcancel instead of touchend once a touch is interpreted as
+  // a scroll/pan gesture, so both need to resume the marquee immediately —
+  // waiting on a debounced onScroll alone left it paused indefinitely.
+  const handleTouchStart = () => setDragging(true);
+  const handleTouchEnd = () => setDragging(false);
 
   const paused = explicitPaused || dragging;
 
@@ -97,8 +86,8 @@ function Row({
       className={`marquee-row${paused ? " is-interacting" : ""}`}
       onClick={() => setExplicitPaused((p) => !p)}
       onTouchStart={handleTouchStart}
-      onTouchEnd={armResumeTimer}
-      onScroll={armResumeTimer}
+      onTouchEnd={handleTouchEnd}
+      onTouchCancel={handleTouchEnd}
     >
       <div
         className={`flex w-max gap-4 ${reverse ? "marquee-track-reverse" : "marquee-track"}`}

@@ -12,6 +12,7 @@ interface GlareHoverProps {
   playOnce?: boolean;
   className?: string;
   style?: CSSProperties;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
 function hexToRgba(hex: string, opacity: number) {
@@ -41,6 +42,7 @@ export default function GlareHover({
   playOnce = false,
   className = "",
   style,
+  onClick,
 }: GlareHoverProps) {
   const vars = {
     "--gh-angle": `${glareAngle}deg`,
@@ -58,6 +60,7 @@ export default function GlareHover({
       // listener — without this, the glare sweep and any active: styling
       // on cards using GlareHover never fire on touch at all.
       onTouchStart={() => {}}
+      onClick={onClick}
     >
       {children}
     </div>
