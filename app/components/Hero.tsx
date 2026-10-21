@@ -19,6 +19,14 @@ const stripFrames = [
   { num: "006", ph: "ph-8", video: "cgs-natalia" },
   { num: "007", ph: "ph-4", video: "izzi-kiky" },
   { num: "008", ph: "ph-6", video: "eonna-elyon-nuh" },
+  { num: "009", ph: "ph-3", video: "cassia-ben" },
+  { num: "010", ph: "ph-1", video: "dpk-final" },
+  { num: "011", ph: "ph-2", video: "fikqi-altadena" },
+  { num: "012", ph: "ph-9", video: "jo-monard" },
+  { num: "013", ph: "ph-5", video: "julius-nexen" },
+  { num: "014", ph: "ph-8", video: "rini-kav-depok" },
+  { num: "015", ph: "ph-4", video: "rona-castilo" },
+  { num: "016", ph: "ph-6", video: "revisi" },
 ];
 
 function delay(i: number): CSSProperties {
@@ -47,7 +55,7 @@ function Words({ text, from }: { text: string; from: number }) {
 /*
  * 9:16 portrait slots show a static poster (extracted frame) for the passive
  * scrolling strip — real playback only kicks in inside the Lightbox, so we're
- * not decoding 16 concurrent videos in the marquee.
+ * not decoding concurrent videos in the marquee.
  */
 function StripSet({
   hidden,
