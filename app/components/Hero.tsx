@@ -14,7 +14,6 @@ const stripFrames = [
   { num: "001", ph: "ph-3", video: "armont-rizky" },
   { num: "002", ph: "ph-1", video: "gramercy-natalia" },
   { num: "003", ph: "ph-2", video: "belova-rizky" },
-  { num: "004", ph: "ph-9", video: "anza-megacung" },
   { num: "005", ph: "ph-5", video: "castillo-rizky" },
   { num: "006", ph: "ph-8", video: "cgs-natalia" },
   { num: "007", ph: "ph-4", video: "izzi-kiky" },
