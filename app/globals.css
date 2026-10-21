@@ -190,41 +190,19 @@ section[id] {
    Hero film strip — slow marquee, static under reduced motion
    --------------------------------------------------------------------------- */
 .filmstrip-track {
-  animation: filmstrip 23s linear infinite;
+  will-change: transform;
 }
 
 .filmstrip-scroll {
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  overflow: hidden;
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+  cursor: grab;
 }
 
-.filmstrip-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.filmstrip-scroll .frame {
-  scroll-snap-align: start;
-}
-
-/* Hover-to-pause only makes sense on real pointer devices — on touch,
-   pausing is handled in JS on touchstart/pointerdown instead, so this
-   doesn't get stuck "hovered" after a tap */
-@media (hover: hover) and (pointer: fine) {
-  .filmstrip:hover .filmstrip-track {
-    animation-play-state: paused;
-  }
-}
-
-.filmstrip.is-interacting .filmstrip-track {
-  animation-play-state: paused;
-}
-
-@keyframes filmstrip {
-  to {
-    transform: translateX(-50%);
-  }
+.filmstrip-scroll.is-dragging,
+.filmstrip-scroll.is-dragging .frame {
+  cursor: grabbing;
 }
 
 /* ---------------------------------------------------------------------------
@@ -699,10 +677,6 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .filmstrip-track {
-    animation: none;
   }
 
   .marquee-track,

@@ -4,6 +4,7 @@ import { useState, type CSSProperties } from "react";
 import { useLanguage } from "@/lib/language";
 import { waLink } from "@/lib/contact";
 import Lightbox from "./Lightbox";
+import FilmstripScroll from "./FilmstripScroll";
 import ShapeGrid from "./ShapeGrid";
 import ShinyText from "./ShinyText";
 import GradientText from "./GradientText";
@@ -81,6 +82,7 @@ function StripSet({
             <img
               src={`/videos/hero/${frame.video}.jpg`}
               alt=""
+              draggable={false}
               className="frame-media absolute inset-0 h-full w-full object-cover"
             />
             <svg
@@ -109,14 +111,6 @@ export default function Hero() {
   const wordsA = t.hero.titleA.split(" ").length;
   const wordsB = t.hero.titleB.split(" ").length;
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [dragging, setDragging] = useState(false);
-
-  // iOS fires touchcancel instead of touchend once a touch is interpreted as
-  // a scroll/pan gesture, so both need to resume the marquee immediately —
-  // waiting on a debounced onScroll alone left it paused indefinitely.
-  const handleTouchStart = () => setDragging(true);
-  const handleTouchEnd = () => setDragging(false);
-
   const lightboxFrames = stripFrames.map((frame) => ({
     num: frame.num,
     ph: frame.ph,
@@ -214,24 +208,16 @@ export default function Hero() {
         </p>
       </div>
 
-      {/* Portrait film strip — 9:16 video slots. Pauses on hover/touch, swipeable
-          on mobile, static under reduced motion */}
+      {/* Shared position for autoplay and dragging; static under reduced motion. */}
       <div
         id="hero-filmstrip"
-        className={`filmstrip scroll-mt-24 border-y border-line bg-card/70${dragging ? " is-interacting" : ""}`}
+        className="filmstrip scroll-mt-24 border-y border-line bg-card/70"
       >
         <div className="sprocket-thin" aria-hidden="true" />
-        <div
-          className="filmstrip-scroll py-2"
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onTouchCancel={handleTouchEnd}
-        >
-          <div className="filmstrip-track flex w-max">
-            <StripSet note={t.hero.stripNote} onOpen={setActiveIndex} />
-            <StripSet note={t.hero.stripNote} hidden onOpen={setActiveIndex} />
-          </div>
-        </div>
+        <FilmstripScroll>
+          <StripSet note={t.hero.stripNote} onOpen={setActiveIndex} />
+          <StripSet note={t.hero.stripNote} hidden onOpen={setActiveIndex} />
+        </FilmstripScroll>
         <div className="sprocket-thin" aria-hidden="true" />
       </div>
 
